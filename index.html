@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#087fce">
+<meta name="description" content="Game matematika pengurangan dengan meminjam untuk Kelas 2 MIS An Najiyah">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<title>Balapan Pintar 3D — MIS An Najiyah</title>
+<style>
+:root{--navy:#102c59;--blue:#087fce;--cyan:#36d8f5;--yellow:#ffd83d;--pink:#ff5ca8;--green:#29c978;--purple:#8b5cf6}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(#62d9ff,#e8fbff 54%,#9be4b5);color:var(--navy);min-height:100vh}
+button{font:inherit;cursor:pointer;border:0;border-radius:15px;padding:12px 16px;font-weight:800;color:#fff;background:linear-gradient(180deg,#22b9ed,#087fce);box-shadow:0 5px 0 #07599b,0 8px 18px #1234;transition:transform .12s}button:active{transform:translateY(3px);box-shadow:0 2px 0 #07599b}button.secondary{background:linear-gradient(#9b7aff,#7043db);box-shadow:0 5px 0 #4c2c9c}button.gold{background:linear-gradient(#ffe878,#ffae16);color:#623c00;box-shadow:0 5px 0 #c77a00}button.green{background:linear-gradient(#55e99a,#16a86a);box-shadow:0 5px 0 #087345}button.ghost{background:#fff;color:#17618d;box-shadow:0 4px 0 #b9e8f5;border:2px solid #b8eaff}
+header{padding:12px 15px;display:flex;gap:10px;align-items:center;justify-content:space-between;max-width:1050px;margin:auto}header .brand{font-weight:1000;font-size:clamp(16px,3vw,23px);text-shadow:0 2px #fff}header small{display:block;font-size:11px}
+main{max-width:1050px;margin:auto;padding:8px 14px 35px}.screen{display:none}.screen.active{display:block}
+.panel{background:#ffffffeb;border:3px solid #fff;border-radius:24px;padding:clamp(16px,3vw,28px);box-shadow:0 10px 0 #3a9dbb55,0 18px 35px #12457722;margin:10px 0}
+.hero{text-align:center;overflow:hidden;position:relative;background:linear-gradient(145deg,#fff,#d9f8ff)}.logo{font-size:clamp(29px,7vw,60px);font-weight:1000;line-height:1.02;color:#087fce;text-shadow:0 3px #fff,0 6px #6acff5}.subtitle{font-weight:900;color:#7043db;font-size:clamp(15px,3vw,22px)}
+.scene{height:210px;position:relative;border-radius:20px;overflow:hidden;margin:18px 0;background:linear-gradient(#5dd5ff 0 48%,#9ce8a6 49% 100%);perspective:650px;border:3px solid white}
+.cloud{position:absolute;width:90px;height:30px;border-radius:30px;background:#fff;top:25px;left:8%;box-shadow:22px -12px 0 2px #fff,45px 0 0 -3px #fff}.cloud.c2{left:auto;right:10%;top:53px;transform:scale(.7)}
+.hill{position:absolute;bottom:65px;width:270px;height:125px;border-radius:50%;background:linear-gradient(#60d994,#20a96c);left:-45px}.hill.h2{left:auto;right:-55px;background:linear-gradient(#9bf17d,#36b66b)}
+.road{position:absolute;left:20%;right:20%;bottom:-45px;height:210px;background:linear-gradient(90deg,#344a70,#536989 45%,#344a70);transform:rotateX(42deg);border:8px solid #fff;border-bottom:0;border-radius:35px 35px 0 0}.road:before{content:"";position:absolute;left:48%;height:100%;border-left:7px dashed #ffe85a}
+.toycar{position:absolute;bottom:35px;left:calc(50% - 45px);width:90px;height:43px;border-radius:25px 30px 13px 13px;background:linear-gradient(#55dcff,#087fce);border:4px solid #fff;box-shadow:0 8px 0 #07599b,0 12px 15px #1235;animation:bob 1.4s ease-in-out infinite}.toycar:before{content:"";position:absolute;left:20px;top:-19px;width:42px;height:23px;background:linear-gradient(#c7f7ff,#4bbce9);border:4px solid #fff;border-radius:14px 14px 3px 3px}.wheel{position:absolute;bottom:-10px;width:22px;height:22px;border:5px solid #fff;border-radius:50%;background:#24324b}.w1{left:10px}.w2{right:10px}@keyframes bob{50%{transform:translateY(-5px) rotate(-1deg)}}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}.menu-card{border:3px solid white;border-radius:19px;padding:15px 12px;min-height:130px;color:#123;text-align:left;box-shadow:0 6px 0 #1c739955;cursor:pointer}.menu-card b{display:block;font-size:17px}.menu-card span{font-size:34px;display:block;margin-bottom:6px}.c1{background:linear-gradient(135deg,#b6f8ff,#51c6ff)}.c2{background:linear-gradient(135deg,#e6d6ff,#a58aff)}.c3{background:linear-gradient(135deg,#fff1a8,#ffc34b)}.c4{background:linear-gradient(135deg,#c7ffd9,#63e6a0)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.between{justify-content:space-between}.pill{background:#e4f8ff;border:2px solid #b9eaff;padding:7px 12px;border-radius:999px;font-weight:900}.muted{color:#476783;font-size:14px}.big{font-size:clamp(24px,5vw,42px);font-weight:1000}.question{font-size:clamp(30px,7vw,56px);font-weight:1000;letter-spacing:2px;text-align:center;margin:18px 0}.answers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.answers button{font-size:clamp(21px,4vw,30px);padding:18px 6px}.feedback{min-height:38px;text-align:center;font-weight:900;font-size:18px;padding:8px}.steps{background:#f0fbff;border:2px dashed #79cde8;border-radius:15px;padding:13px;line-height:1.65}.progress{height:14px;background:#d8eff7;border-radius:99px;overflow:hidden;flex:1;min-width:100px}.progress div{height:100%;background:linear-gradient(90deg,#34d399,#10a7dd);width:0;transition:width .3s}.reward{font-size:60px;text-align:center;filter:drop-shadow(0 6px 3px #e9b22b55)}.mini-stage{height:190px;border-radius:18px;background:linear-gradient(#6bdcff,#d7faff 60%,#79d99d 61%);position:relative;overflow:hidden;margin:14px 0;border:3px solid #fff}.coin{position:absolute;font-size:30px;animation:float 1.3s ease-in-out infinite;cursor:pointer}.coin:nth-child(2n){animation-delay:.4s}@keyframes float{50%{transform:translateY(-12px) rotate(12deg)}}footer{text-align:center;font-size:12px;color:#23516b;padding:14px}.hidden{display:none!important}
+@media(max-width:480px){header{padding:10px}main{padding:5px 9px 25px}.panel{padding:15px;border-radius:19px}.scene{height:180px}.answers{gap:7px}.answers button{padding:14px 4px}.menu-card{min-height:116px}}
+</style>
+</head>
+<body>
+<header><div class="brand">🏁 BALAPAN PINTAR 3D<small>Kelas 2 MIS An Najiyah</small></div><button id="installBtn" class="gold hidden">＋ Instal</button></header>
+<main>
+<section id="home" class="screen active">
+<div class="panel hero"><div class="logo">BALAPAN<br>PINTAR</div><div class="subtitle">Misi Pengurangan dengan Meminjam</div>
+<div class="scene"><div class="cloud"></div><div class="cloud c2"></div><div class="hill"></div><div class="hill h2"></div><div class="road"></div><div class="toycar"><i class="wheel w1"></i><i class="wheel w2"></i></div></div>
+<p><b>Lewati rintangan, kumpulkan bintang, buka hadiah!</b></p><p class="muted">Tanpa musik • Tanpa suara • Bisa dimainkan sendiri atau bergantian di kelas</p>
+<button id="startBtn" class="green">🚗 Mulai Petualangan</button>
+</div>
+<div class="panel"><div class="row between"><h2>🗺️ Dunia Permainan</h2><span class="pill">⭐ <span id="starCount">0</span> bintang</span></div><div class="menu-grid">
+<button class="menu-card c1" data-go="race"><span>🏎️</span><b>Balapan Angka</b><small>Jawab dan lewati gerbang</small></button>
+<button class="menu-card c2" data-go="bridge"><span>🌉</span><b>Jembatan Pinjam</b><small>Bangun jembatan angka</small></button>
+<button class="menu-card c3" data-go="treasure"><span>💎</span><b>Gua Harta</b><small>Buka peti hadiah</small></button>
+<button class="menu-card c4" data-go="garage"><span>🚙</span><b>Garasi Hadiah</b><small>Koleksi mobil dan warna</small></button>
+</div></div>
+<div class="panel"><h3>🏆 Kemajuan Misi</h3><div id="missionStatus" class="muted">Misi belum dimulai.</div></div>
+</section>
+
+<section id="map" class="screen"><div class="panel"><div class="row between"><button class="ghost" data-home>⌂ Menu</button><span class="pill">Peta Misi 🗺️</span></div><h1>Pilih Misi</h1><p class="muted">Selesaikan 5 soal pada setiap misi untuk mendapatkan hadiah.</p><div class="menu-grid">
+<button class="menu-card c1" data-mission="0"><span>1️⃣</span><b>Gerbang Ratusan</b><small>Pengurangan dasar</small><p id="m0">0/5 ⭐</p></button>
+<button class="menu-card c2" data-mission="1"><span>2️⃣</span><b>Jembatan Angka</b><small>Isi angka yang hilang</small><p id="m1">0/5 ⭐</p></button>
+<button class="menu-card c3" data-mission="2"><span>3️⃣</span><b>Lembah Tantangan</b><small>Meminjam puluhan/satuan</small><p id="m2">0/5 ⭐</p></button>
+<button class="menu-card c4" data-mission="3"><span>4️⃣</span><b>Benteng Raja Angka</b><small>Tantangan akhir</small><p id="m3">0/5 ⭐</p></button>
+</div></div></section>
+
+<section id="game" class="screen"><div class="panel"><div class="row between"><button class="ghost" data-map>← Peta</button><span class="pill" id="missionName">Misi</span><span class="pill">⭐ <span id="gameStars">0</span></span></div>
+<div class="scene" style="height:155px"><div class="cloud"></div><div class="cloud c2"></div><div class="hill"></div><div class="hill h2"></div><div class="road"></div><div class="toycar" id="movingCar"><i class="wheel w1"></i><i class="wheel w2"></i></div></div>
+<div class="row"><b id="questionNum">Soal 1/5</b><div class="progress"><div id="progressBar"></div></div></div>
+<div id="question" class="question">352 − 178 = ?</div><div id="answers" class="answers"></div><div id="feedback" class="feedback" aria-live="polite"></div>
+<div id="hint" class="steps hidden"></div><div class="row between"><button id="hintBtn" class="ghost">💡 Petunjuk</button><button id="nextBtn" class="green hidden">Lanjut ➜</button></div>
+</div></section>
+
+<section id="prize" class="screen"><div class="panel hero"><div class="reward" id="rewardIcon">🏆</div><h1 id="prizeTitle">Misi Selesai!</h1><p id="prizeText">Hebat!</p><div class="big" id="prizeStars">+3 ⭐</div><p>Alhamdulillah, aku berhasil!</p><button id="claimBtn" class="gold">🎁 Ambil Hadiah</button><button data-map class="ghost">Kembali ke Peta</button></div></section>
+
+<section id="bonus" class="screen"><div class="panel"><div class="row between"><button class="ghost" data-home>⌂ Menu</button><h2>🎮 Mini Game: Tangkap Koin</h2></div><p>Ketuk koin yang muncul untuk mengumpulkan 10 koin. Tidak ada timer.</p><div class="row"><span class="pill">Koin: <b id="coins">0</b>/10</span><button id="spawnCoins" class="green">Mulai Mini-Game</button></div><div class="mini-stage" id="coinStage"><div style="padding:30px;text-align:center;font-weight:900">Tekan “Mulai Mini-Game” lalu ketuk koin!</div></div><div id="bonusMessage" class="feedback"></div><button data-home class="ghost">Kembali ke Menu</button></div></section>
+
+<section id="garage" class="screen"><div class="panel"><div class="row between"><button class="ghost" data-home>⌂ Menu</button><h2>🚘 Garasi Hadiah</h2><span class="pill">⭐ <b id="garageStars">0</b></span></div><p>Pilih mobil untuk melihat koleksi. Mobil terbuka berdasarkan bintang yang dikumpulkan.</p><div class="menu-grid" id="carList"></div><div id="garageMessage" class="feedback"></div><button data-home class="ghost">Kembali ke Menu</button></div></section>
+
+<section id="bridge" class="screen"><div class="panel hero"><div class="reward">🌉</div><h1>Jembatan Pinjam</h1><p>Jawab soal pengurangan untuk menyusun jembatan. Setiap jawaban benar menambahkan satu bagian jembatan.</p><div class="steps">Ingat: jika angka satuan tidak cukup, pinjam 1 puluhan. Jika puluhan tidak cukup, pinjam 1 ratusan.</div><button id="bridgeStart" class="green">Mulai Bangun Jembatan</button><button data-map class="ghost">Kembali ke Peta</button></div></section>
+<section id="treasure" class="screen"><div class="panel hero"><div class="reward">💎</div><h1>Gua Harta Karun</h1><p>Selesaikan tantangan untuk membuka peti harta dan mendapatkan bintang tambahan.</p><div class="steps">Setiap jawaban benar membawa mobil semakin dekat ke peti harta.</div><button id="treasureStart" class="gold">Masuk ke Gua</button><button data-map class="ghost">Kembali ke Peta</button></div></section>
+</main>
+<footer>Khusus Kelas 2 MIS An Najiyah • Pembuat game: Susan Sukmana<br>Game edukasi gratis • Tanpa musik dan tanpa suara</footer>
+<script>
+const $=id=>document.getElementById(id);
+const screens=["home","map","game","prize","bonus","garage","bridge","treasure"];
+function show(id){screens.forEach(s=>$(s).classList.toggle("active",s===id));window.scrollTo({top:0,behavior:"smooth"});}
+const names=["Gerbang Ratusan","Jembatan Angka","Lembah Tantangan","Benteng Raja Angka"];
+const state={stars:0,coins:0,progress:[0,0,0,0],claimed:[false,false,false,false],car:0,mission:0,index:0,correct:0,questions:[],locked:false};
+function save(){try{localStorage.setItem("balapanPintarAnNajiyah",JSON.stringify(state));}catch(e){} updateUI();}
+function load(){try{const x=JSON.parse(localStorage.getItem("balapanPintarAnNajiyah")||"null");if(x)Object.assign(state,x);}catch(e){} updateUI();}
+function updateUI(){$("starCount").textContent=state.stars;$("gameStars").textContent=state.stars;$("garageStars").textContent=state.stars;$("missionStatus").textContent=state.progress.map((p,i)=>names[i]+": "+p+"/5").join(" • ");state.progress.forEach((p,i)=>$("m"+i).textContent=p+"/5 ⭐");renderCars();}
+function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+function makeQuestion(m,i){let a,b,ans;if(m===0){a=[rand(200,500),rand(300,700),rand(400,800),rand(500,900),rand(250,650)][i];b=rand(101,a-30);while((a%10)>=(b%10) || (Math.floor(a/10)%10)>=(Math.floor(b/10)%10)) {b=rand(101,a-1);if(b>=a)b=a-1;} }
+else if(m===1){a=[462,573,684,751,832][i];b=[178,286,395,468,574][i];}
+else if(m===2){a=[352,463,624,731,842][i];b=[178,285,357,486,576][i];}
+else {a=[503,642,721,834,905][i];b=[278,387,468,576,689][i];}
+ans=a-b;let opts=new Set([ans]);while(opts.size<3){let v=ans+rand(-35,35);if(v>0&&v!==ans)opts.add(v);}return {a,b,ans,opts:[...opts].sort(()=>Math.random()-.5),hint:makeHint(a,b,ans)}}
+function makeHint(a,b,ans){let ones=a%10, tens=Math.floor(a/10)%10, hundreds=Math.floor(a/100), bo=b%10, bt=Math.floor(b/10)%10, bh=Math.floor(b/100);let s=[];if(ones<bo)s.push("Satuan: "+ones+" belum cukup untuk dikurangi "+bo+". Pinjam 1 puluhan: satuan menjadi "+(ones+10)+", puluhan berkurang 1.");if(tens-(ones<bo?1:0)<bt)s.push("Puluhan: belum cukup. Pinjam 1 ratusan menjadi 10 puluhan.");s.push("Kurangkan satuan, lalu puluhan, lalu ratusan. Periksa kembali hasilnya.");s.push("Hasil yang benar adalah "+ans+".");return s.join("<br>")}
+function beginMission(m){state.mission=m;state.index=0;state.correct=0;state.questions=Array.from({length:5},(_,i)=>makeQuestion(m,i));state.locked=false;show("game");$("missionName").textContent=names[m];renderQuestion();}
+function renderQuestion(){let q=state.questions[state.index];$("questionNum").textContent="Soal "+(state.index+1)+"/5";$("progressBar").style.width=(state.index/5*100)+"%";$("question").textContent=state.mission===1?"□ − "+q.b+" = "+q.ans:q.a+" − "+q.b+" = ?";$("feedback").textContent="";$("hint").classList.add("hidden");$("hintBtn").classList.remove("hidden");$("nextBtn").classList.add("hidden");$("answers").innerHTML="";q.opts.forEach(v=>{let b=document.createElement("button");b.textContent=v;b.className="";b.onclick=()=>answer(v,b);$("answers").appendChild(b)});state.locked=false;}
+function answer(v,btn){if(state.locked)return;let q=state.questions[state.index];if(v===q.ans){state.locked=true;state.correct++;state.stars++;$("feedback").textContent="Benar! Mobil melaju 🚗✨";$("feedback").style.color="#07945a";$("movingCar").style.left="calc(50% + 20px)";[...$("answers").children].forEach(b=>b.disabled=true);$("progressBar").style.width=((state.index+1)/5*100)+"%";$("nextBtn").classList.remove("hidden");$("hintBtn").classList.add("hidden");save();}else{$("feedback").textContent="Belum tepat. Coba lagi atau lihat petunjuk 💡";$("feedback").style.color="#d34b4b";btn.style.background="linear-gradient(#ff8e8e,#d94343)";btn.disabled=true;}}
+function finishMission(){let m=state.mission;state.progress[m]=Math.max(state.progress[m],5);state.coins+=5;state.claimed[m]=true;save();$("rewardIcon").textContent=["🚗","🌉","💎","🏆"][m];$("prizeTitle").textContent="Misi Selesai!";$("prizeText").textContent="Hebat! Kamu menyelesaikan "+names[m]+". Hadiahmu: 5 koin dan akses mini-game!";$("prizeStars").textContent="+5 ⭐";show("prize");}
+$("nextBtn").onclick=()=>{if(state.index<4){state.index++;renderQuestion();}else finishMission();};
+$("hintBtn").onclick=()=>{$("hint").innerHTML=state.questions[state.index].hint;$("hint").classList.remove("hidden");};
+$("startBtn").onclick=()=>show("map");
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>show(b.dataset.go));
+document.querySelectorAll("[data-home]").forEach(b=>b.onclick=()=>show("home"));
+document.querySelectorAll("[data-map]").forEach(b=>b.onclick=()=>show("map"));
+document.querySelectorAll("[data-mission]").forEach(b=>b.onclick=()=>beginMission(+b.dataset.mission));
+$("bridgeStart").onclick=()=>beginMission(1);$("treasureStart").onclick=()=>beginMission(2);
+$("claimBtn").onclick=()=>{show("bonus");resetBonus();};
+function resetBonus(){$("coins").textContent="0";$("coinStage").innerHTML='<div style="padding:30px;text-align:center;font-weight:900">Tekan “Mulai Mini-Game” untuk memunculkan koin!</div>';$("bonusMessage").textContent="";bonusCount=0;}
+let bonusCount=0;
+$("spawnCoins").onclick=()=>{bonusCount=0;$("coins").textContent="0";$("coinStage").innerHTML="";for(let i=0;i<10;i++){let c=document.createElement("button");c.className="coin";c.textContent="🪙";c.style.left=rand(4,84)+"%";c.style.top=rand(8,68)+"%";c.style.background="transparent";c.style.boxShadow="none";c.style.padding="0";c.onclick=()=>{if(c.disabled)return;c.disabled=true;c.style.opacity=".2";bonusCount++;$("coins").textContent=bonusCount;if(bonusCount===10){$("bonusMessage").textContent="Hebat! Semua koin terkumpul. +3 bintang!";state.stars+=3;state.coins+=10;save();}};$("coinStage").appendChild(c)}};
+function renderCars(){const cars=[["🚙","Mobil Biru",0],["🚗","Mobil Merah",5],["🚕","Mobil Kuning",10],["🏎️","Mobil Ungu",15],["🚓","Mobil Balap",20],["🚜","Mobil Konstruksi",25]];$("carList").innerHTML="";cars.forEach((c,i)=>{let b=document.createElement("button");b.className="menu-card "+["c1","c2","c3","c4"][i%4];b.innerHTML='<span>'+c[0]+'</span><b>'+c[1]+'</b><small>'+(state.stars>=c[2]?"Terbuka ✓":"Perlu "+c[2]+" bintang")+'</small>';b.onclick=()=>{$("garageMessage").textContent=state.stars>=c[2]?"Kamu memilih "+c[1]+"! Mobil siap dipakai.":"Kumpulkan lebih banyak bintang untuk membuka mobil ini.";if(state.stars>=c[2])state.car=i;};$("carList").appendChild(b);});}
+if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}
+let installPrompt;$("installBtn").classList.add("hidden");window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e;$("installBtn").classList.remove("hidden")});$("installBtn").onclick=async()=>{if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$("installBtn").classList.add("hidden")}else alert("Buka menu browser ⋮ lalu pilih Tambahkan ke layar utama atau Instal aplikasi.");};
+load();
+</script>
+</body></html>

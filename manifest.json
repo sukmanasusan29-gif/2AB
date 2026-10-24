@@ -1,0 +1,23 @@
+{
+  "name": "Balapan Pintar 3D - MIS An Najiyah",
+  "short_name": "Balapan Pintar",
+  "description": "Game pengurangan dengan meminjam Kelas 2 MIS An Najiyah",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#62d9ff",
+  "theme_color": "#087fce",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
